@@ -3,6 +3,6 @@ Package hello;
 public class hello {
 
 	public static void main(String[] args) {
-		System.out.println("Olá bichano!");
+		System.out.println("Olá tareco!");
 	}
 }
