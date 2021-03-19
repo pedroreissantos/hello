@@ -8,16 +8,29 @@
 
 ## 1. Introdução
 
-O desenvolvimento de projetos complexos, sejam informáticos ou não, requer a sua subdivisão em tarefas.
-Estas tarefas são atribuídas a utilizadores que realizam as atividades necessárias para completar com êxito cada tarefa.
-O método [kanban](https://en.wikipedia.org/wiki/Kanban) foi desenvolvido pela Toyota, no fim dos anos 40 do século passado, com o objetivo de facilitar a produção *just-in-time*.
-Mais recentemente a Microsoft ([Anderson 2013](https://www.amazon.com/Kanban-David-J-Anderson-ebook/dp/B0057H2M70)) adaptou o conceito ao desenvolvimento de software, mas o *kanban* é utilizado em diversas outras áreas.
-O objectivo deste projeto é o desenvolvimento, em linguagem C, de um sistema de gestão de tarefas tipo *kanban*.
+O desenvolvimento de projetos complexos, sejam informáticos ou não,
+requer a sua subdivisão em tarefas.
+Estas tarefas são atribuídas a utilizadores que realizam as atividades
+necessárias para completar com êxito cada tarefa.
+O método [kanban](https://en.wikipedia.org/wiki/Kanban) foi desenvolvido
+pela Toyota, no fim dos anos 40 do século passado, com o objetivo de
+facilitar a produção *just-in-time*.
+Mais recentemente a Microsoft ([Anderson 2013](https://www.amazon.com/Kanban-David-J-Anderson-ebook/dp/B0057H2M70))
+adaptou o conceito ao desenvolvimento de software, mas o *kanban* é
+utilizado em diversas outras áreas.
+O objectivo deste projeto é o desenvolvimento, em linguagem C,
+de um sistema de gestão de tarefas tipo *kanban*.
 
 ![kanban1](kanban1.jpg)
 
-A interacção com o programa deverá ocorrer através de um conjunto de linhas compostas por uma letra (comando) e um número de argumentos dependente do comando a executar.
-Os possíveis comandos são listados na Tabela seguinte e indicam as operações a executar.
+A interacção com o programa deverá ocorrer através de um conjunto de
+linhas compostas por uma letra (comando) e um número de argumentos
+dependente do comando a executar.
+Pode assumir que todo o *input* fornecido respeitará os tipos indicados,
+por exemplo onde é esperado um valor inteiro decimal nunca será
+introduzida uma letra.
+Os possíveis comandos são listados na Tabela seguinte e indicam
+as operações a executar.
 
 | Comando | Acção |
 |:---:|:---|
@@ -29,13 +42,15 @@ Os possíveis comandos são listados na Tabela seguinte e indicam as operações
 | __m__ | move uma tarefa de uma atividade para outra |
 | __d__ | lista todas as tarefas de uma dada atividade |
 | __a__ | adiciona uma atividade ou lista todas as atividades |
-| __g__ | gere grupos de utilizadores do sistema |
 
 ## 2. Especificação do problema
 
 O objectivo do projecto é ter um sistema de gestão de tarefas de um projeto.
+Para tal, o projeto é divido em tarefas, que podem ser executadas em paralelo.
 As tarefas são executadas por utilizadores do sistema, que são responsáveis
 por elas durante o tempo da sua execução.
+Ao longo da sua execução a tarefa vai sendo afetada a diversas atividades.
+Cada atividade executa uma operação específica.
 O tempo total de execução de uma tarefa deve ser contabilizado para poder
 ser comparado com o tempo inicialmente previsto.
 Assim, pode-se determinar atrasos na execução do projeto na sua totalidade e,
@@ -56,36 +71,46 @@ Cada __tarefa__ é caracterizada por:
 * a duração prevista da tarefa (um número inteiro positivo)
 * o instante em que a tarefa começou a ser executada (um número inteiro positivo)
 
-Uma __tarefa__ é descrita por uma *string* não vazia com um máximo de __50__ carateres, podendo conter carateres brancos (espaços ou tabulador `\t`).
-O sistema suporta um máximo de __10__ atividades, já existindo à partida três atividades: `TO DO`, `IN PROGRESS` e `DONE`.
-Uma nova tarefa é inicialmente colocada na atividade `TO DO` com tempo de início igual a _0_ (zero), independentemente do tempo atual.
+Uma __tarefa__ é descrita por uma *string* não vazia com um máximo de
+__50__ carateres, podendo conter carateres brancos (espaços ou tabulador `\t`).
+O sistema suporta um máximo de __10__ atividades, já existindo à partida
+três atividades criadas na sequência: `TO DO`, `IN PROGRESS` e `DONE`.
+Uma nova tarefa é inicialmente colocada na atividade `TO DO` com tempo de
+início igual a _0_ (zero), independentemente do tempo atual.
 A tarefa é iniciada quando abandona a atividade `TO DO`.
 Os identificadores das tarefas são únicos.
 Pode assumir que existirão no máximo 10 000 tarefas diferentes.
-As tarefas são numeradas sequencialmente pela sua ordem de introdução de 1 a 10 000.
+As tarefas são numeradas sequencialmente pela sua ordem de introdução de
+1 a 10 000.
 
-Uma __atividade__ é descrita por uma *string* não vazia com um máximo de __20__ carateres, podendo conter carateres brancos (espaços ou tabulador `\t`), mas não podendo conter letras minúsculas.
-Podem ser adicionadas novas tarefa, o que permite detalhar a execução de uma tarefa desde o seu estado inicial `TO DO` até ao seu estado final `DONE`.
-Uma tarefa, uma vez iniciada não pode voltar ao estado `TO DO`, mas uma
-tarefa no estado `DONE` pode ser movida para outra atividade
+Uma __atividade__ é descrita por uma *string* não vazia com um máximo de
+__20__ carateres, podendo conter carateres brancos (espaços ou tabulador
+`\t`), mas não podendo conter letras minúsculas.
+Podem ser adicionadas novas tarefa, o que permite detalhar a execução de
+uma tarefa desde a sua atividade inicial `TO DO` até à sua atividade final `DONE`.
+Uma tarefa, uma vez iniciada não pode voltar à atividade inicial `TO DO`,
+mas uma tarefa na atividade `DONE` pode ser movida para outra atividade
 (excepto `TO DO`), por exemplo para correção de erros (*bugs*).
 
-Um __utilizador__ é descrito por uma *string* não vazia com um máximo de 20 carateres, não podendo conter carateres brancos.
+Um __utilizador__ é descrito por uma *string* não vazia com um máximo de
+20 carateres, não podendo conter carateres brancos.
 O sistema suporta um máximo de __50__ utilizadores.
-
-Um __grupo__ é um conjunto de até __10__ utilizadores.
-Do ponto de vista do sistema, um grupo comporta-se como um utilizador, ou seja, se a tarefa é realizada por um grupo, o utilizador da tarefa é o grupo.
-Um grupo pode conter outros grupos, mas não ele próprio, podendo ser redefinido em qualquer momento.
-O sistema suporta um máximo de __20__ grupos.
-Assim, se existirem 20 grupos, apenas podem existir 30 utilizadores individuais, no máximo.
 
 ## 3. Dados de Entrada
 
-O programa deverá ler os dados de entrada a partir da linha de comandos do terminal.
+O programa deverá ler os dados de entrada a partir da linha de comandos do
+terminal.
 
-Durante a execução do programa as instruções devem ser lidas do terminal (*standard input*) na forma de um conjunto de linhas iniciadas por um carácter, que se passa a designar por comando, seguido de um número de informações dependente do comando a executar; o comando e cada uma das informações são separados por pelo menos um caráter branco.
+Durante a execução do programa as instruções devem ser lidas do terminal
+(*standard input*) na forma de um conjunto de linhas iniciadas por um
+carácter, que se passa a designar por comando, seguido de um número de
+informações dependente do comando a executar; o comando e cada uma das
+informações são separados por pelo menos um caráter branco.
 
-Os comandos disponíveis são descritos de seguida. Cada comando indica uma determinada acção que se passa a caracterizar em termos de formato de entrada, formato de saída e erros a retornar. Se o comando gerar mais do que um erro, deverá ser indicado apenas o primeiro.
+Os comandos disponíveis são descritos de seguida. Cada comando indica
+uma determinada acção que se passa a caracterizar em termos de formato
+de entrada, formato de saída e erros a retornar. Se o comando gerar mais
+do que um erro, deverá ser indicado apenas o primeiro.
 
   * __q__ - termina o programa:
     * Formato de entrada: `q`
@@ -93,7 +118,7 @@ Os comandos disponíveis são descritos de seguida. Cada comando indica uma dete
 
   * __t__ - adiciona uma nova tarefa ao sistema:
     * Formato de entrada: `t <duração> <descrição>`
-    * Formato de saída: `tarefa <id>` onde `<id>` é o identificador da tarefa criada.
+    * Formato de saída: `task <id>` onde `<id>` é o identificador da tarefa criada.
     * Nota: a descrição pode conter carateres brancos.
     * Erros:
         * `too many tasks` no caso de a tarefa, se criada, exceder o limite máximo de tarefas permitidas pelo sistema.
@@ -127,7 +152,7 @@ Os comandos disponíveis são descritos de seguida. Cada comando indica uma dete
     * Nota: Uma vez iniciada uma tarefa, e registado o seu instante de início, a tarefa não pode ser reiniciada; no entanto, uma tarefa dada como concluída pode ser movida para uma atividade que não `TO DO`, para a resolução de problemas entretanto encontrados, por exemplo.
     * Erros:
         * `no such task` no caso de não existir nenhuma tarefa com o identificador indicado.
-        * `task already started` no caso de a tarefa já ter sido iniciada.
+        * `task already started` no caso se tentar mover a tarefa para a atividade `TO DO`.
         * `no such user` no caso de não existir nenhum utilizador com o nome indicado.
         * `no such activity` no caso de não existir nenhuma atividade com o nome indicado.
   
@@ -140,31 +165,26 @@ Os comandos disponíveis são descritos de seguida. Cada comando indica uma dete
   
   * __a__ - adiciona uma atividade ou lista todas as atividades:
     * Formato de entrada: `a [<atividade>]`
-    * Formato de saída: lista de nomes de atividades, uma por linha, ou nada se for a criação de uma nova atividade (exceto erro).
+    * Formato de saída: lista de nomes de atividades por ordem de criação, uma por linha, ou nada se for a criação de uma nova atividade (exceto erro).
     * Erros:
         * `duplicate activity` no caso de já existir uma atividade com o mesmo nome.
         * `invalid description` no caso de o nome da atividade conter letras minúsculas.
         * `too many activities` no caso da atividade, se criada, exceder o limite permitido de atividades.
-  
-  * __g__ - gere grupos de utilizadores do sistema:
-    * Formato de entrada: `g <grupo> <utilizador1> <utilizador2> ... <utilizadorN>`
-    * Formato de saída: NADA (excepto erro)
-    * Erros:
-        * `too many groups` no caso de o grupo, se criado, exceder o limite permitido de grupos.
-        * `user already exists` no caso de já existir um utilizador com esse nome.
-        * `too many users` no caso de o novo utilizador, a ser criado, exceda o limite de utilizadores.
-        * `<utilizador>: no such user` no caso de o utilizador `<utilizador>` não existir no sistema.
-        * `no such group` no caso de o nome do grupo não existir no sistema.
-  
-## 4. Dados de Saída
 
-O compilador a utilizar é o `gcc` com as seguintes opções de compilação: `-Wall -Wextra -Werror -ansi -pedantic`. Para compilar o programa deve executar o seguinte comando:
+O compilador a utilizar é o `gcc` com as seguintes opções de compilação:
+`-Wall -Wextra -Werror -ansi -pedantic`. Para compilar o programa deve
+executar o seguinte comando:
 
 ```
     $ gcc -Wall -Wextra -Werror -ansi -pedantic -o proj1 *.c
 ```
 
-O programa deverá escrever no *standard output* as respostas aos comandos apresentados no *standard input*. As respostas são igualmente linhas de texto formatadas conforme definido anteriormente neste enunciado. Tenha em atenção ao número de espaços entre elementos do seu output, assim como a ausência de espaços no final de cada linha. Procure respeitar escrupulosamente as indicações dadas.
+O programa deverá escrever no *standard output* as respostas aos comandos
+apresentados no *standard input*. As respostas são igualmente linhas de
+texto formatadas conforme definido anteriormente neste enunciado.
+Tenha em atenção ao número de espaços entre elementos do seu output,
+assim como a ausência de espaços no final de cada linha. Procure respeitar
+escrupulosamente as indicações dadas.
 
 Ver os exemplos de input e respectivos output na pasta `tests/`.
 
