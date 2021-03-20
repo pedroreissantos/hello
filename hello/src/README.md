@@ -29,7 +29,7 @@ dependente do comando a executar.
 Pode assumir que todo o *input* fornecido respeitará os tipos indicados,
 por exemplo onde é esperado um valor inteiro decimal nunca será
 introduzida uma letra.
-Os possíveis comandos são listados na Tabela seguinte e indicam
+Os possíveis comandos são listados na tabela seguinte e indicam
 as operações a executar.
 
 | Comando | Acção |
