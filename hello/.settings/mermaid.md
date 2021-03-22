@@ -7,3 +7,6 @@ graph TD;
 	A2-->A3;
 	A3-->A4;
 ```
+
+![dfs1](mermaid-diagram-20210322112723.svg)
+![dfs1](mermaid-diagram-20210322112752.png)
