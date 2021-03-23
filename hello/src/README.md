@@ -40,7 +40,7 @@ as operações a executar.
 | __n__ | avança o tempo do sistema |
 | __u__ | adiciona um utilizador ou lista todos os utilizadores |
 | __m__ | move uma tarefa de uma atividade para outra |
-| __d__ | lista todas as tarefas de uma dada atividade |
+| __d__ | lista todas as tarefas que estejam numa dada atividade |
 | __a__ | adiciona uma atividade ou lista todas as atividades |
 
 ## 2. Especificação do problema
@@ -56,9 +56,8 @@ ser comparado com o tempo inicialmente previsto.
 Assim, pode-se determinar atrasos na execução do projeto na sua totalidade e,
 caso se justifique, afetar mais pessoal.
 
-Como se trata de um simulador, o tempo é controlado pela aplicação, não tendo
-relação com a data ou horas atuais. O __tempo__ é iniciado a _0_ (*zero*) e
-não pode ser decrementado.
+Como se trata de um simulador, o tempo é controlado pela aplicação através de um comando, não tendo relação com a data ou horas atuais do sistema.
+O __tempo__ é iniciado a _0_ (*zero*) e não pode ser decrementado.
 
 ![kanban2](kanban2.jpg)
 
@@ -86,7 +85,8 @@ As tarefas são numeradas sequencialmente pela sua ordem de introdução de
 Uma __atividade__ é descrita por uma *string* não vazia com um máximo de
 __20__ carateres, podendo conter carateres brancos (espaços ou tabulador
 `\t`), mas não podendo conter letras minúsculas.
-Podem ser adicionadas novas tarefa, o que permite detalhar a execução de
+Diversas tarefas podem estar a executar numa mesma atividade, por exemplo *análise de requisitos* ou *debugging*, podendo as tarefas estar atribuídas ao mesmo utilizador ou a utilizadores distintos.
+Podem ser adicionadas novas atividades, o que permite detalhar a execução de
 uma tarefa desde a sua atividade inicial `TO DO` até à sua atividade final `DONE`.
 Uma tarefa, uma vez iniciada não pode voltar à atividade inicial `TO DO`,
 mas uma tarefa na atividade `DONE` pode ser movida para outra atividade
@@ -156,7 +156,7 @@ do que um erro, deverá ser indicado apenas o primeiro.
         * `no such user` no caso de não existir nenhum utilizador com o nome indicado.
         * `no such activity` no caso de não existir nenhuma atividade com o nome indicado.
   
-  * __d__ - lista todas as tarefas de uma dada atividade:
+  * __d__ - lista todas as tarefas que estejam numa dada atividade:
     * Formato de entrada: `d <atividade>`:
     * Formato de saída: `<id> <início> <descrição>` por cada tarefa que está na atividade, uma por linha, por ordem crescente de instante de início (momento em que deixam a atividade `TO DO`) e alfabeticamente por descrição, se duas ou mais tarefas tiverem o mesmo instante de início.
     * Erros:
