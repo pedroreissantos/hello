@@ -171,6 +171,8 @@ do que um erro, deverá ser indicado apenas o primeiro.
         * `invalid description` no caso de o nome da atividade conter letras minúsculas.
         * `too many activities` no caso da atividade, se criada, exceder o limite permitido de atividades.
 
+*Nota importante*: não é permitida a utilização da função `qsort` nativa do C e esta *string* não deve aparecer no vosso código.
+
 O compilador a utilizar é o `gcc` com as seguintes opções de compilação:
 `-Wall -Wextra -Werror -ansi -pedantic`. Para compilar o programa deve
 executar o seguinte comando:
