@@ -128,7 +128,7 @@ do que um erro, deverá ser indicado apenas o primeiro.
     * Formato de entrada: `l [<id> <id> ...]`
     * Formato de saída: `<id> <actividade> #<duração> <descrição>` por cada tarefa, uma por linha.
         * Se o comando for invocado sem argumentos, todas as tarefas são listadas por ordem alfabética da descrição.
-        * Se o comando for invocado com uma lista de `<id>`s, as tarefas devem listadas pela ordem dos respetivos `<id>`s.
+        * Se o comando for invocado com uma lista de `<id>`s, as tarefas devem ser listadas pela ordem dos respetivos `<id>`s.
     * Erros:
         * `<id>: no such task` no caso de não existir a tarefa indicada.
 
@@ -222,7 +222,7 @@ A entrega do projecto deverá respeitar o procedimento seguinte:
 
 * Como resultado do processo de upload será informado se a resolução entregue apresenta a resposta esperada num conjunto de casos de teste.
 
-* O sistema não permite submissões com menos de 10 minutos de intervalo para o mesmo grupo. Tenha especial atenção a este facto na altura da submissão final. Exemplos de casos de teste serão oportunamente fornecidos.
+* O sistema não permite submissões com menos de 10 minutos de intervalo para o mesmo aluno. Tenha especial atenção a este facto na altura da submissão final. Exemplos de casos de teste serão oportunamente fornecidos.
 
 * Data limite de entrega do projecto: __16 de Abril de 2021, às 19h59m__. Até à data limite poderá efectuar o número de submissões que desejar, sendo utilizada para efeitos de avaliação a última submissão efectuada. Deverá portanto verificar cuidadosamente que a última submissão corresponde à versão do projecto que pretende que seja avaliada. Não existirão excepções a esta regra.
 
