@@ -141,7 +141,7 @@ do que um erro, deverá ser indicado apenas o primeiro.
 
   * __u__ - adiciona um utilizador ou lista todos os utilizadores:
     * Formato de entrada: `u [<utilizador>]`
-    * Formato de saída: lista dos nomes dos utilizadores, um nome por linha, pela ordem de criação ou nada se for criado um novo utilizador.
+    * Formato de saída: lista dos nomes dos utilizadores, um nome por linha, pela ordem de criação ou nada, se for criado um novo utilizador.
     * Erros:
         * `user already exists` no caso de já existir um utilizador com esse nome.
         * `too many users` no caso de o novo utilizador, a ser criado, exceda o limite de utilizadores.
@@ -165,7 +165,7 @@ do que um erro, deverá ser indicado apenas o primeiro.
   
   * __a__ - adiciona uma atividade ou lista todas as atividades:
     * Formato de entrada: `a [<atividade>]`
-    * Formato de saída: lista de nomes de atividades por ordem de criação, uma por linha, ou nada se for a criação de uma nova atividade (exceto erro).
+    * Formato de saída: lista de nomes de atividades por ordem de criação, uma por linha, ou nada, se for a criação de uma nova atividade (exceto erro).
     * Erros:
         * `duplicate activity` no caso de já existir uma atividade com o mesmo nome.
         * `invalid description` no caso de o nome da atividade conter letras minúsculas.
