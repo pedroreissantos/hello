@@ -172,6 +172,7 @@ do que um erro, deverá ser indicado apenas o primeiro.
 
 __Só poderá usar as funções de biblioteca definidas em `stdio.h`,
 `stdlib.h`, `ctype.h` e `string.h`__
+
 *Nota importante*: não é permitida a utilização da função `qsort` nativa do C e este *nome* não deve aparecer no vosso código.
 
 O compilador a utilizar é o `gcc` com as seguintes opções de compilação:
