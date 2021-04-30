@@ -21,12 +21,11 @@ seguinte e indicam as operações a executar.
 | __help__   | Imprime os comandos disponíveis. |
 | __quit__   | Termina o programa. |
 | __set__    | Adiciona ou modifica o valor a armazenar. |
+| __print__  | Imprime todos os caminhos e valores. |
 | __find__   | Imprime o valor armazenado. |
 | __list__   | Lista todos subcomponentes de um caminho. |
 | __search__ | Procura o caminho dado um valor. |
 | __delete__ | Apaga um caminho e todos os subcaminhos. |
-| __save__   | Guarda em ficheiro todos os caminhos e valores. |
-| __load__   | Carrega todos caminhos e valores de um ficheiro. |
 
 ## 2. Especificação do problema
 
@@ -42,8 +41,9 @@ Notar que não existe o conceito de diretoria pelo que é possível associar val
 No entanto, os componentes de um caminho podem ser manipulados, como se tratasse de uma diretoria.
 
 Não existem limites no número nem na dimensão dos caminhos ou dos valores, logo deve procurar utilizar a memória estritamente necessária.
-Para facilitar a introdução dos dados, pode assumir que cada comando não excede 65535 carateres.
+Para facilitar a introdução dos dados, pode assumir que cada instrução não excede 65535 carateres.
 Se a memória se esgotar, o programa deve terminar de forma controlada, imprimindo a mensagem `No memory.` antes de terminar.
+Antes de terminar, o programa deve libertar toda a memória reservada.
 
 ## 3. Dados de Entrada
 
@@ -52,6 +52,7 @@ na forma de um conjunto de linhas iniciadas por uma palavra, que se passa a
 designar por _comando_, seguido de um número de informações dependente do
 comando a executar. Os comandos e os argumentos são separados por carateres
 brancos, mas o último argumento pode conter espaços ou tabuladores se for um `<valor>`.
+Antes de ser lida uma instrução, deve ser impressa a *prompt* _'? '_.
 
 Os comandos disponíveis são descritos de seguida. Cada comando indica uma
 determinada ação que se passa a caracterizar em termos de formato de entrada,
@@ -73,6 +74,12 @@ deverá retornar apenas o primeiro desses erros.
     * Formato de saída: NADA
     * Erros: Não aplicável.
 
+  * __print__ -  Imprime todos os caminhos e valores:
+    * Formato de entrada: NADA
+    * Formato de saída: 
+    Imprime todas as associações, em profundidade, pela ordem de criação dos componentes. Apenas os caminhos com valor associado devem ser impressos.
+    * Erros: Não aplicável.
+
   * __find__ -   Imprime o valor armazenado:
     * Formato de entrada: `find <caminho>`
     * Formato de saída: Imprime o valor associado ao `<caminho>`.
@@ -90,19 +97,13 @@ deverá retornar apenas o primeiro desses erros.
     * Formato de entrada: `search <valor>`
     * Formato de saída: Imprime o primeiro caminho encontrado que contém exatamente o `<valor>` indicado. O caminho inicia-se com o separador _'/'_ e tem apenas um separador _'/'_ entre cada componente. Cada componente deve ser pesquisado pela ordem de criação.
     * Erros:
-        * `not found` no caso de não existir o caminho.
+        * `not found` no caso de não existir nenhum caminho com o valor indicado.
 
   * __delete__ - Apaga um caminho e todos os seus componentes:
     * Formato de entrada: `delete <caminho>`
     * Formato de saída: Apaga o `<caminho>` indicado e todos os seus componentes. Se for invocado sem argumentos apaga todos os caminhos armazenados.
     * Erros:
         * `not found` no caso de não existir o caminho.
-
-  * __print__ -  Imprime todos os caminhos e valores:
-    * Formato de entrada: NADA
-    * Formato de saída: 
-    Imprime todas as associações, em profundidade, pela ordem de criação dos componentes. Apenas os caminhos com valor associado devem ser impressos.
-    * Erros: Não aplicável.
 
 ## 4. Dados de Saída
 
