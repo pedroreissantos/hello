@@ -117,8 +117,6 @@ O compilador a utilizar é o `gcc` com as seguintes opções de compilação: `-
 
 Este comando deve ter como resultado a geração do ficheiro executável `proj2`, caso não haja erros de compilação. __A execução deste comando não deverá escrever qualquer resultado no terminal. Caso a execução deste comando escreva algum resultado no terminal, considera-se que o programa não compilou com sucesso__. Por exemplo, durante a compilação do programa, o compilador não deverá escrever mensagens de aviso (warnings).
 
-Algumas dicas para degugging podem ser encontradas [aqui](debugging.md).
-
 __Só poderá usar as funções de biblioteca definidas em `stdio.h`, `stdlib.h` e `string.h`__
 
 ## 5. Execução do Programa
@@ -135,8 +133,8 @@ Posteriormente poderá comparar o seu output (`*.myout`) com o output previsto (
     $ diff test.out test.myout
 ```
 
-Para testar o seu programa poderá executar os passos indicados acima ou usar o comando `make` na pasta `tests/`.
-Para executar todos os testes com o *valgrind* poderá executar `make valgrind`.
+Para testar o seu programa poderá executar os passos indicados acima ou usar o comando `make` na pasta `tests/`. na pasta `tests/`.
+Para executar todos os testes com o *valgrind* poderá executar `make valgrind` na pasta `tests/`.
 
 ## 6. Entrega do Projecto
 
@@ -169,6 +167,7 @@ Algumas guidelines sobre este tópico podem ser encontradas [aqui](guidelines.md
 
 3. Na segunda componente serão utilizadas as ferramentas _lizard_, _valgrind_, e a opção _fsanitize_ por forma a detectar a complexidade de código, fugas de memória (“memory leaks”) ou outras incorrecções no código, que serão penalizadas.
 Aconselha-se que utilizem estas ferramentas para fazer debugging do código e corrigir eventuais incorrecções, antes da submissão do projecto.
+Algumas dicas para degugging podem ser encontradas [aqui](debugging.md).
 
 * A classificação da primeira componente da avaliação do projecto é obtida através da execução automática de um conjunto de testes num computador com o sistema operativo GNU/Linux. Torna-se portanto essencial que o código compile correctamente e que respeite o formato de entrada e saída dos dados descritos anteriormente. Projectos que não obedeçam ao formato indicado no enunciado serão penalizados na avaliação automática, podendo, no limite, ter 0 (zero) valores se falharem todos os testes. Os testes considerados para efeitos de avaliação poderão incluir (ou não) os disponibilizados na página da disciplina, além de um conjunto de testes adicionais. A execução de cada programa em cada teste é limitada na quantidade de memória que pode utilizar, e no tempo total disponível para execução, sendo o tempo limite distinto para cada teste.
 
