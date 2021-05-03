@@ -76,8 +76,8 @@ deverá retornar apenas o primeiro desses erros.
 
   * __print__ -  Imprime todos os caminhos e valores:
     * Formato de entrada: NADA
-    * Formato de saída: 
-    Imprime todas as associações, em profundidade, pela ordem de criação dos componentes. Apenas os caminhos com valor associado devem ser impressos.
+    * Formato de saída: `<caminho> <valor>`, uma associação por linha.
+    Imprime todas as associações, em profundidade, pela ordem de criação dos componentes. Apenas os caminhos com valor associado devem ser impressos. Os caminhos deve ser iniciados pelo separador _'/'_ e separados do valor por um espaço.
     * Erros: Não aplicável.
 
   * __find__ -   Imprime o valor armazenado:
