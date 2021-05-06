@@ -31,18 +31,20 @@ seguinte e indicam as operações a executar.
 
 O objetivo do projeto é ter um sistema de armazenamento hierárquico em memória.
 O sistema de armazenamento associa a um caminho um valor.
-Tanto o caminho como o valor são cadeias de carateres que não podem conter o caráter _NULL_ (_'\0'_) e o caminho também não pode conter carateres brancos (_' '_, _'\t'_, _'\n'_).
-O caminho pode ser decomposto em componentes separados pelo caráter _'/'_.
-Um ou mais separadores _'/'_ consecutivos correspondem a um só separador.
-A existência de separador no início o no fim do caminho não modifica os componentes, logo _/a/b//_ é igual a _a/b_.
+Tanto o caminho como o valor são cadeias de carateres que não podem conter o caráter _NULL_ (_`'\0'`_) e o caminho também não pode conter carateres brancos (_`' '`_, _`'\t'`_, _`'\n'`_).
+O caminho pode ser decomposto em componentes separados pelo caráter _`'/'`_.
+Um ou mais separadores _`'/'`_ consecutivos correspondem a um só separador.
+Os primeiros componentes de um caminho formam um sub-caminho ou um prefixo de um caminho.
+Por exemplo, o caminho _/usr/local/bin/lizard_ tem 4 componentes e 3 sub-caminhos (_/usr_, _/usr/local_ e _/usr/local/bin_).
+A existência de separador no início ou no fim do caminho não modifica os componentes, logo _/usr/local//_ é igual a _usr/local_.
 
-Por exemplo, o caminho _/usr/local/bin/lizard_ pode ser associado ao valor _analisador de complexidade_.
+Cada caminho pode ser associado a um valor. Por exemplo, o caminho _/usr/local/bin/lizard_ pode ser associado ao valor _analisador de complexidade_.
 Notar que não existe o conceito de diretoria pelo que é possível associar valores a _/usr_ ou _/usr/local_.
-No entanto, os componentes de um caminho podem ser manipulados, como se tratasse de uma diretoria.
+No entanto, os sub-caminhos de um caminho podem ser manipulados, como se tratasse de uma diretoria. Por exemplo, os caminhos _/usr/local/bin/lizard_ e _/usr/local/bin/ncinfo_ possuem prefixo comum, pelo que ao listar os caminhos com sub-caminho _/usr/local/bin_ deverá listar ambos os caminhos.
 
 Não existem limites no número nem na dimensão dos caminhos ou dos valores, logo deve procurar utilizar a memória estritamente necessária.
 Para facilitar a introdução dos dados, pode assumir que cada instrução não excede 65535 carateres.
-Se a memória se esgotar, o programa deve terminar de forma controlada, imprimindo a mensagem `No memory.` antes de terminar.
+Se a memória se esgotar, o programa deve terminar de forma controlada, imprimindo a mensagem `No memory.`
 Antes de terminar, o programa deve libertar toda a memória reservada.
 
 ## 3. Dados de Entrada
@@ -50,8 +52,10 @@ Antes de terminar, o programa deve libertar toda a memória reservada.
 Durante a execução do programa as instruções devem ser lidas do standard input
 na forma de um conjunto de linhas iniciadas por uma palavra, que se passa a
 designar por _comando_, seguido de um número de informações dependente do
-comando a executar. Os comandos e os argumentos são separados por carateres
-brancos, mas o último argumento pode conter espaços ou tabuladores se for um `<valor>`.
+comando a executar.
+Os comandos e os argumentos são separados por espaços ou tabuladores.
+No entanto, o último argumento pode conter espaços ou tabuladores se for um `<valor>`,
+sendo que um `<valor>` não tem espaços ou tabuladores no início ou no fim.
 Antes de ser lida uma instrução, deve ser impressa a *prompt* _'? '_.
 
 Os comandos disponíveis são descritos de seguida. Cada comando indica uma
@@ -75,19 +79,19 @@ deverá retornar apenas o primeiro desses erros.
     * Erros: Não aplicável.
 
   * __print__ -  Imprime todos os caminhos e valores:
-    * Formato de entrada: NADA
-    * Formato de saída: `<caminho> <valor>`, uma associação por linha.
-    Imprime todas as associações, em profundidade, pela ordem de criação dos componentes. Apenas os caminhos com valor associado devem ser impressos. Os caminhos deve ser iniciados pelo separador _'/'_ e separados do valor por um espaço.
+    * Formato de entrada: `print`
+    * Formato de saída: <caminho> <valor>`, uma associação por linha.
+    Imprime todos os caminhos e valores, em profundidade, pela ordem de criação dos componentes. Apenas os caminhos com valor associado devem ser impressos. Os caminhos deve ser iniciados pelo separador _'/'_ e separados do valor por um espaço.
     * Erros: Não aplicável.
 
-  * __find__ -   Imprime o valor armazenado:
+  * __find__ -   Imprime o valor armazenado de um caminho:
     * Formato de entrada: `find <caminho>`
     * Formato de saída: Imprime o valor associado ao `<caminho>`.
     * Erros:
         * `not found` no caso de não existir o caminho.
         * `no data` no caso de o caminho não ter valor associado.
 
-  * __list__ -   Lista todos subcomponentes de um caminho:
+  * __list__ -   Lista todos caminhos imediatos de um sub-caminho:
     * Formato de entrada: `list <caminho>`
     * Formato de saída: Imprime todos os componentes imediatos do `<caminho>` por ordem alfabética (ordem _ASCII_, maiúsculas primeiro), ou seja o seu diretório. Se o comando for invocado sem argumentos, lista os componentes da raiz.
     * Erros:
@@ -99,9 +103,9 @@ deverá retornar apenas o primeiro desses erros.
     * Erros:
         * `not found` no caso de não existir nenhum caminho com o valor indicado.
 
-  * __delete__ - Apaga um caminho e todos os seus componentes:
+  * __delete__ - Apaga todos os caminhos de um sub-caminho:
     * Formato de entrada: `delete <caminho>`
-    * Formato de saída: Apaga o `<caminho>` indicado e todos os seus componentes. Se for invocado sem argumentos apaga todos os caminhos armazenados.
+    * Formato de saída: Apaga o `<caminho>` indicado e todos os outros caminhos para o qual `<caminho>` é um sub-caminho. Se for invocado sem argumentos apaga todos os caminhos armazenados.
     * Erros:
         * `not found` no caso de não existir o caminho.
 
