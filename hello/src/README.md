@@ -23,7 +23,7 @@ seguinte e indicam as operações a executar.
 | __set__    | Adiciona ou modifica o valor a armazenar. |
 | __print__  | Imprime todos os caminhos e valores. |
 | __find__   | Imprime o valor armazenado. |
-| __list__   | Lista todos subcomponentes de um caminho. |
+| __list__   | Lista todos os componentes de um caminho. |
 | __search__ | Procura o caminho dado um valor. |
 | __delete__ | Apaga um caminho e todos os subcaminhos. |
 
@@ -80,8 +80,8 @@ deverá retornar apenas o primeiro desses erros.
 
   * __print__ -  Imprime todos os caminhos e valores:
     * Formato de entrada: `print`
-    * Formato de saída: <caminho> <valor>`, uma associação por linha.
-    Imprime todos os caminhos e valores, em profundidade, pela ordem de criação dos componentes. Apenas os caminhos com valor associado devem ser impressos. Os caminhos deve ser iniciados pelo separador _'/'_ e separados do valor por um espaço.
+    * Formato de saída: <caminho> <valor>
+    Imprime todos os caminhos e valores (um caminho e valor por linha), em profundidade, pela ordem de criação dos componentes. Apenas os caminhos com valor associado devem ser impressos. Os caminhos deve ser iniciados pelo separador _'/'_ e separados do valor por um espaço.
     * Erros: Não aplicável.
 
   * __find__ -   Imprime o valor armazenado de um caminho:
@@ -91,7 +91,7 @@ deverá retornar apenas o primeiro desses erros.
         * `not found` no caso de não existir o caminho.
         * `no data` no caso de o caminho não ter valor associado.
 
-  * __list__ -   Lista todos caminhos imediatos de um sub-caminho:
+  * __list__ -   Lista todos os componentes imediatos de um sub-caminho:
     * Formato de entrada: `list <caminho>`
     * Formato de saída: Imprime todos os componentes imediatos do `<caminho>` por ordem alfabética (ordem _ASCII_, maiúsculas primeiro), ou seja o seu diretório. Se o comando for invocado sem argumentos, lista os componentes da raiz.
     * Erros:
