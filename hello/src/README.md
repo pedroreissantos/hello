@@ -56,7 +56,6 @@ comando a executar.
 Os comandos e os argumentos são separados por espaços ou tabuladores.
 No entanto, o último argumento pode conter espaços ou tabuladores se for um `<valor>`,
 sendo que um `<valor>` não tem espaços ou tabuladores no início ou no fim.
-Antes de ser lida uma instrução, deve ser impressa a *prompt* _'? '_.
 
 Os comandos disponíveis são descritos de seguida. Cada comando indica uma
 determinada ação que se passa a caracterizar em termos de formato de entrada,
