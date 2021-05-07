@@ -23,7 +23,7 @@ seguinte e indicam as operações a executar.
 | __set__    | Adiciona ou modifica o valor a armazenar. |
 | __print__  | Imprime todos os caminhos e valores. |
 | __find__   | Imprime o valor armazenado. |
-| __list__   | Lista todos os componentes de um caminho. |
+| __list__   | Lista todos os componentes imediatos de um sub-caminho. |
 | __search__ | Procura o caminho dado um valor. |
 | __delete__ | Apaga um caminho e todos os subcaminhos. |
 
